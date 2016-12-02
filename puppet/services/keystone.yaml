@@ -141,8 +141,8 @@ outputs:
           - get_attr: [ApacheServiceBase, role_data, config_settings]
           - keystone::database_connection:
               list_join:
-                - ''
-                - - {get_param: [EndpointMap, MysqlInternal, protocol]}
+                - - ''
+                  - {get_param: [EndpointMap, MysqlInternal, protocol]}
                   - '://keystone:'
                   - {get_param: AdminToken}
                   - '@'
