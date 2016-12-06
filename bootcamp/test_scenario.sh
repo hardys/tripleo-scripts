@@ -48,6 +48,7 @@ if [[ $SCENARIOS =~ (^|[[:space:]])$1($|[[:space:]]) ]]; then
   echo "openstack overcloud deploy --templates ./tripleo-heat-templates"
 else
   echo "Please enter a valid scenario to setup:"
+  echo
   echo "$SCENARIOS"
   exit 1
 fi
