@@ -29,18 +29,22 @@ fi
 if [[ $SCENARIOS =~ (^|[[:space:]])$1($|[[:space:]]) ]]; then
   echo "Configuring scenario $1"
   pushd tripleo-heat-templates
-  git fetch -a 
+  git checkout .
+  git clean -fd
+  git fetch -a
   git checkout -b $1 origin/$1 || git checkout $1
   popd
   for d in $PUPPET_MODULES; do
     pushd puppet_modules/$d
-    git fetch -a 
+    git checkout .
+    git clean -fd
+    git fetch -a
     git checkout -b $1 origin/$1 || git checkout $1
     popd
   done
   echo "scenario $1 configured"
   echo "Now run the following commands:"
-  echo 
+  echo
   echo ". stackrc"
   echo "cd $SCENARIO_DIR"
   echo "./tripleo-common/scripts/upload-puppet-modules -d puppet_modules"
